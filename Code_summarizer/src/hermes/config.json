@@ -1,0 +1,9 @@
+{
+  "project_name": "Context-Aware Code Summarizer",
+  "version": "1.0.0",
+  "watch_extensions": [".py", ".js", ".ts", ".go"],
+  "exclude_dirs": [".git", "__pycache__", "node_modules", "venv", "docs"],
+  "output_dir": "docs",
+  "target_file": "ARCHITECTURE.md",
+  "max_file_size_kb": 512
+}
