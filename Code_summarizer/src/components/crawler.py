@@ -32,7 +32,7 @@ class ProjectConfigCrawler:
         return {}
 
     def _load_skeleton_json(self, path: str) -> dict:
-        print("🔍 Loading Skeleton from:", path)
+        print("Loading Skeleton from:", path)
         path_ = path if path.endswith(".json") else os.path.join(path, "project_skeleton.json")
         if os.path.exists(path_):
             with open(path_, "r", encoding="utf-8") as f:
@@ -57,7 +57,7 @@ class ProjectConfigCrawler:
         with open(path_, "w", encoding="utf-8") as f:
             # BUG FIX 2: Dump the actual 'self.skeleton' data dictionary, NOT the path string!
             json.dump(self.skeleton, f, indent=2)
-        print(f"💾 [SUCCESS] Persistent state tracking index cached out to: {path_}")
+        print(f"[SUCCESS] Persistent state tracking index cached out to: {path_}")
 
     def _calculate_hash(self, file_path: str) -> str:
         hasher = hashlib.md5()
@@ -102,7 +102,7 @@ class ProjectConfigCrawler:
                     # Check if file has been modified or is entirely new to our cache
                     if self.skeleton.get("files", {}).get(rel_path, {}).get("hash") != file_hash:
                         changes_detected = True
-                        print(f"⚡ [MODIFY] Structure mutation detected in: {rel_path}")
+                        print(f"[MODIFY] Structure mutation detected in: {rel_path}")
 
                         if rel_path.endswith(".py"):
                             symbols = CodeParser.parse_python_file(full_path)
@@ -124,7 +124,7 @@ class ProjectConfigCrawler:
         for path in cached_files:
             if path not in current_files:
                 changes_detected = True
-                print(f"🗑️ [DELETE] Purging deleted file asset trace from cache: {path}")
+                print(f"[DELETE] Purging deleted file asset trace from cache: {path}")
                 del self.skeleton["files"][path]
 
         # Save updates to disk if changes were caught
