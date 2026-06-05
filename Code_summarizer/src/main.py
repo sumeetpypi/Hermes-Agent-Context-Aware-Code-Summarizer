@@ -20,7 +20,7 @@ def main():
     
     #user_path = input("Enter the absolute path to your project directory:").strip()
     
-    print("🚀 Initializing Context-Aware Code Summarizer Service Engine...")
+    print("Initializing Context-Aware Code Summarizer Service Engine...")
     user_path = UserInput()
 
     skeleton_path = user_path.get("skeleton_path")
@@ -86,7 +86,7 @@ def validate_path(user_path, target_path):
 
 
         if data_dict and data_dict.get("exit_code") == 0:
-                print("✨ Directory validation passed. Syncing project environment metadata...")
+                print("Directory validation passed. Syncing project environment metadata...")
 
                 # 1. Clean and parse the multiline console file list output safely
                 raw_output = data_dict.get("output", "")
@@ -106,8 +106,8 @@ def validate_path(user_path, target_path):
                 file_path = os.path.join(user_path, config_file)
                 file_ske = os.path.join(user_path, skeleton_file)
 
-                print(f"🔎 Located Target Profile Config: {file_path}")
-                print(f"🔎 Located Target State Cache:  {file_ske}")
+                print(f"Located Target Profile Config: {file_path}")
+                print(f"Located Target State Cache:  {file_ske}")
 
                 # 4. Initialize your core engine crawler pipeline context
                 ProjectFileCrawler(config_path=file_path, skeleton_path=file_ske, target_path=target_path)
